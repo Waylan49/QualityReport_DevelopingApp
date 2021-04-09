@@ -1,7 +1,6 @@
 library(shiny)
 library(shinyMatrix)
 
-m<-matrix(c(1:6), 6, 1, dimnames = list(NULL, c("Serial Number Input")))
 
 ui <- fluidPage(
 
