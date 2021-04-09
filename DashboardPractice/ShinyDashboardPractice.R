@@ -4,18 +4,36 @@ library(shinydashboard)
 Qspeak
 
 ui<-dashboardPage(
-    dashboardHeader(title="Qspeak"),
-    dashboardSidebar(),
+    skin="yellow",
+    dashboardHeader(title="Qspeak Dashboard"),
+    
+    dashboardSidebar(
+        width=275,
+        sidebarMenu(
+            menuItem(text = "Return Parts Decomp", tabName = "Decomp", icon=icon("dashboard")),
+            menuItem(text="DOA-TAT", tabName="DOA", icon=icon("algolia"))
+        )
+    ),
     dashboardBody(
-            
-            fluidRow(
+        tags$style(HTML(".main-sidebar { font-size: 20px; }")),
+        tabItems(
+            tabItem(
+                tabName="Decomp",
+                fluidRow(
                     box(
                         fileInput(inputId = "file1", label = "Upload your Qspeak Report", accept = ".xlsx"),
                         height=80
-                        )
+                    )
+                ),
+                plotlyOutput('contents', width = "800px", height = "500px")
             ),
-            plotlyOutput('contents', width = "800px", height = "350px")
-    ))
+            tabItem(
+                tabName ="DOA",
+                h2("DOA TAT Dashboard")
+            )
+        )
+ )
+)
 
 
 
